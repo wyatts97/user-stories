@@ -19,20 +19,21 @@ This fork transforms the original simple profile stories into a polished, Instag
 ## Requirements
 
 - **Flarum `^2.0`**
-- **[ianm/follow-users](https://github.com/imorland/follow-users)** — Required dependency for the follow system
+- **[ianm/follow-users](https://github.com/imorland/follow-users)** *(optional)* — Enables the follow-based stories bar. Without it, the stories bar will be empty but the extension will still function for profile stories.
+  > Note: `ianm/follow-users` currently requires Flarum `^1.8.3`. A Flarum 2.x compatible version is needed for full follow-based functionality.
 
 ## Installation
 
 Install with composer:
 
 ```sh
-composer require justoverclock/profile-stories:"*"
+composer require wyatts97/user-stories:"*"
 ```
 
 ## Updating
 
 ```sh
-composer update justoverclock/profile-stories:"*"
+composer update wyatts97/user-stories:"*"
 php flarum migrate
 php flarum cache:clear
 ```
@@ -40,7 +41,7 @@ php flarum cache:clear
 ## Features
 
 - Create stories with images, captions, and optional link CTAs
-- Stories appear in a horizontal bar on the **index page** for logged-in users
+- Stories appear in a horizontal bar on the **index page** for logged-in users (when `ianm/follow-users` is installed)
 - Only shows stories from **followed users** (via `ianm/follow-users`)
 - Stories **expire after 24 hours** and are automatically filtered out
 - Profile stories page (`/u/:username/stories`) is still available

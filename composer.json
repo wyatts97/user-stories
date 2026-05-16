@@ -8,8 +8,10 @@
     "type": "flarum-extension",
     "license": "MIT",
     "require": {
-        "flarum/core": "^2.0",
-        "ianm/follow-users": "^1.5"
+        "flarum/core": "^2.0"
+    },
+    "suggest": {
+        "ianm/follow-users": "Required for follow-based stories bar (^1.5). Flarum 2.x compatible version needed."
     },
     "authors": [
         {

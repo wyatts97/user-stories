@@ -113,6 +113,10 @@ class StoryResource extends Resource\AbstractDatabaseResource
     {
         $actor = RequestUtil::getActor($context->request);
 
+        if (!method_exists($actor, 'followedUsers')) {
+            return [];
+        }
+
         $followedUserIds = $actor->followedUsers()
             ->pluck('followed_user_id')
             ->toArray();
