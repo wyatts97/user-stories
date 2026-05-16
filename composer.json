@@ -1,0 +1,57 @@
+{
+    "name": "justoverclock/profile-stories",
+    "description": "Profile Stories for Flarum",
+    "keywords": [
+        "profile stories",
+        "stories"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "require": {
+        "flarum/core": "^2.0",
+        "ianm/follow-users": "^1.5"
+    },
+    "authors": [
+        {
+            "name": "Marco Colia",
+            "email": "info@justoverclock.it",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Justoverclock\\ProfileStories\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Profile Stories",
+            "category": "features",
+            "icon": {
+                "name": "fas fa-users",
+                "color": "red",
+                "backgroundColor": "white"
+            }
+        },
+        "flarum-cli": {
+            "modules": {
+                "admin": true,
+                "forum": true,
+                "js": true,
+                "jsCommon": true,
+                "css": true,
+                "locale": true,
+                "gitConf": true,
+                "githubActions": false,
+                "prettier": true,
+                "typescript": true,
+                "bundlewatch": false,
+                "backendTesting": false,
+                "editorConfig": true,
+                "styleci": true
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
