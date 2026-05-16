@@ -1,8 +1,8 @@
 {
-    "name": "justoverclock/profile-stories",
-    "description": "Profile Stories for Flarum",
+    "name": "wyatts97/User-Stories",
+    "description": "User Stories for Flarum",
     "keywords": [
-        "profile stories",
+        "User stories",
         "stories"
     ],
     "type": "flarum-extension",
@@ -13,19 +13,18 @@
     },
     "authors": [
         {
-            "name": "Marco Colia",
-            "email": "info@justoverclock.it",
+            "name": "wyatts97",
             "role": "Developer"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Justoverclock\\ProfileStories\\": "src/"
+            "Wyatts97\\UserStories\\": "src/"
         }
     },
     "extra": {
         "flarum-extension": {
-            "title": "Profile Stories",
+            "title": "User Stories",
             "category": "features",
             "icon": {
                 "name": "fas fa-users",
