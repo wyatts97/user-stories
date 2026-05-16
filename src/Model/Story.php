@@ -1,6 +1,6 @@
-<?php
+﻿<?php
 
-namespace Justoverclock\ProfileStories\Model;
+namespace Wyatts97\UserStories\Model;
 
 use Flarum\Database\AbstractModel;
 use Flarum\User\User;

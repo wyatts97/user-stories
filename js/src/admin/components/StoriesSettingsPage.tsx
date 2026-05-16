@@ -1,4 +1,4 @@
-import ExtensionPage, { ExtensionPageAttrs } from 'flarum/admin/components/ExtensionPage';
+﻿import ExtensionPage, { ExtensionPageAttrs } from 'flarum/admin/components/ExtensionPage';
 import app from 'flarum/admin/app';
 import Mithril from 'mithril';
 import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
@@ -50,7 +50,7 @@ export default class StoriesSettingsPage extends ExtensionPage {
 
   content(vnode: Mithril.VnodeDOM<ExtensionPageAttrs, this>): JSX.Element {
     const path = app.forum.attribute('baseUrl');
-    const image = app.forum.attribute('justoverclock-profile-stories.imagePreview') || 'https://placehold.co/1920x400';
+    const image = app.forum.attribute('wyatts97-User-Stories.imagePreview') || 'https://placehold.co/1920x400';
     const imagePreview = image ? `${path}/assets/${image}` : '';
 
     return (
@@ -58,8 +58,8 @@ export default class StoriesSettingsPage extends ExtensionPage {
         <div className="preview-storybanner">
           <img src={imagePreview} alt="Preview" />
         </div>
-        <label for="storyBanner">{app.translator.trans('justoverclock-profile-stories.admin.uploadLabel')}</label>
-        <p className="helpText">{app.translator.trans('justoverclock-profile-stories.admin.uploadLabelHelp')}</p>
+        <label for="storyBanner">{app.translator.trans('wyatts97-User-Stories.admin.uploadLabel')}</label>
+        <p className="helpText">{app.translator.trans('wyatts97-User-Stories.admin.uploadLabelHelp')}</p>
         <input
           id="storyBanner"
           className="FormControl"

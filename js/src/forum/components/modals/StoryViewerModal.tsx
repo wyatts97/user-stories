@@ -1,4 +1,4 @@
-import Modal, { IInternalModalAttrs } from 'flarum/common/components/Modal';
+﻿import Modal, { IInternalModalAttrs } from 'flarum/common/components/Modal';
 import Mithril from 'mithril';
 import app from 'flarum/forum/app';
 import Avatar from 'flarum/common/components/Avatar';
@@ -128,7 +128,7 @@ export default class StoryViewerModal extends Modal<StoryViewerModalAttrs> {
       return (
         <div className="Modal-body">
           <div className="StoryViewerModal-container">
-            <p>{app.translator.trans('justoverclock-profile-stories.forum.noStories')}</p>
+            <p>{app.translator.trans('wyatts97-User-Stories.forum.noStories')}</p>
           </div>
         </div>
       );
@@ -186,7 +186,7 @@ export default class StoryViewerModal extends Modal<StoryViewerModalAttrs> {
             ) : (
               <div className="StoryViewerModal-noMedia">
                 <i className="fas fa-image" />
-                <span>{app.translator.trans('justoverclock-profile-stories.forum.noImage')}</span>
+                <span>{app.translator.trans('wyatts97-User-Stories.forum.noImage')}</span>
               </div>
             )}
 
@@ -205,7 +205,7 @@ export default class StoryViewerModal extends Modal<StoryViewerModalAttrs> {
                 rel="noopener noreferrer"
                 className="Button StoryViewerModal-link"
               >
-                {storyAttrs.contentCta || app.translator.trans('justoverclock-profile-stories.forum.viewLink')}
+                {storyAttrs.contentCta || app.translator.trans('wyatts97-User-Stories.forum.viewLink')}
               </a>
             )}
           </div>

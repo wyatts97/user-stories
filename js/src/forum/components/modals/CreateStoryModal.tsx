@@ -1,4 +1,4 @@
-import Modal, { IInternalModalAttrs } from 'flarum/common/components/Modal';
+﻿import Modal, { IInternalModalAttrs } from 'flarum/common/components/Modal';
 import Mithril from 'mithril';
 import app from 'flarum/forum/app';
 import Stream from 'flarum/common/utils/Stream';
@@ -22,7 +22,7 @@ export default class CreateStoryModal extends Modal<CreateStoryModalAttrs> {
   }
 
   title(): Mithril.Children {
-    return app.translator.trans('justoverclock-profile-stories.forum.createStory');
+    return app.translator.trans('wyatts97-User-Stories.forum.createStory');
   }
 
   content(): Mithril.Children {
@@ -37,7 +37,7 @@ export default class CreateStoryModal extends Modal<CreateStoryModalAttrs> {
           ) : (
             <div className="CreateStoryModal-placeholder">
               <i className="fas fa-image" />
-              <span>{app.translator.trans('justoverclock-profile-stories.forum.previewPlaceholder')}</span>
+              <span>{app.translator.trans('wyatts97-User-Stories.forum.previewPlaceholder')}</span>
             </div>
           )}
         </div>
@@ -47,14 +47,14 @@ export default class CreateStoryModal extends Modal<CreateStoryModalAttrs> {
           <input
             value={this.mediaUrl()}
             oninput={(e: { target: { value: string } }) => this.mediaUrl(e.target.value)}
-            placeholder={app.translator.trans('justoverclock-profile-stories.forum.mediaUrlPlaceholder')}
+            placeholder={app.translator.trans('wyatts97-User-Stories.forum.mediaUrlPlaceholder')}
             className="FormControl"
             type="url"
           />
           <input
             value={this.storyTitle()}
             oninput={(e: { target: { value: string } }) => this.storyTitle(e.target.value)}
-            placeholder={app.translator.trans('justoverclock-profile-stories.forum.storyTitle')}
+            placeholder={app.translator.trans('wyatts97-User-Stories.forum.storyTitle')}
             className="FormControl"
             type="text"
           />
@@ -62,21 +62,21 @@ export default class CreateStoryModal extends Modal<CreateStoryModalAttrs> {
             rows={3}
             value={this.caption()}
             oninput={(e: { target: { value: string } }) => this.caption(e.target.value)}
-            placeholder={app.translator.trans('justoverclock-profile-stories.forum.captionPlaceholder')}
+            placeholder={app.translator.trans('wyatts97-User-Stories.forum.captionPlaceholder')}
             className="FormControl"
           />
           <div className="CreateStoryModal-advanced">
             <input
               value={this.contentLink()}
               oninput={(e: { target: { value: string } }) => this.contentLink(e.target.value)}
-              placeholder={app.translator.trans('justoverclock-profile-stories.forum.linkPlaceholder')}
+              placeholder={app.translator.trans('wyatts97-User-Stories.forum.linkPlaceholder')}
               className="FormControl"
               type="url"
             />
             <input
               value={this.contentCta()}
               oninput={(e: { target: { value: string } }) => this.contentCta(e.target.value)}
-              placeholder={app.translator.trans('justoverclock-profile-stories.forum.linkCtaPlaceholder')}
+              placeholder={app.translator.trans('wyatts97-User-Stories.forum.linkCtaPlaceholder')}
               className="FormControl"
               type="text"
             />
@@ -85,7 +85,7 @@ export default class CreateStoryModal extends Modal<CreateStoryModalAttrs> {
 
         <div className="CreateStoryModal-actions">
           <button className="Button" onclick={() => this.hide()}>
-            {app.translator.trans('justoverclock-profile-stories.forum.cancelBtn')}
+            {app.translator.trans('wyatts97-User-Stories.forum.cancelBtn')}
           </button>
           <button
             className="Button Button--primary"
@@ -95,7 +95,7 @@ export default class CreateStoryModal extends Modal<CreateStoryModalAttrs> {
             {this.loading ? (
               <i className="fas fa-spinner fa-spin" />
             ) : (
-              app.translator.trans('justoverclock-profile-stories.forum.shareStoryBtn')
+              app.translator.trans('wyatts97-User-Stories.forum.shareStoryBtn')
             )}
           </button>
         </div>
@@ -129,14 +129,14 @@ export default class CreateStoryModal extends Modal<CreateStoryModalAttrs> {
       .then(() => {
         this.loading = false;
         this.hide();
-        app.alerts.show({ type: 'success' }, app.translator.trans('justoverclock-profile-stories.forum.storyCreatedSuccess'));
+        app.alerts.show({ type: 'success' }, app.translator.trans('wyatts97-User-Stories.forum.storyCreatedSuccess'));
         if (this.attrs.onCreated) {
           this.attrs.onCreated();
         }
       })
       .catch(() => {
         this.loading = false;
-        app.alerts.show({ type: 'error' }, app.translator.trans('justoverclock-profile-stories.forum.storyCreatedError'));
+        app.alerts.show({ type: 'error' }, app.translator.trans('wyatts97-User-Stories.forum.storyCreatedError'));
         m.redraw();
       });
   }

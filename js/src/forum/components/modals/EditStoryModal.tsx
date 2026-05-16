@@ -1,4 +1,4 @@
-import Modal, {IInternalModalAttrs} from "flarum/common/components/Modal";
+﻿import Modal, {IInternalModalAttrs} from "flarum/common/components/Modal";
 import Mithril from "mithril";
 import app from 'flarum/forum/app';
 import Stream from 'flarum/common/utils/Stream';
@@ -41,7 +41,7 @@ export default class EditStoryModal extends Modal<EditStoryModalAttrs> {
   }
 
   title(): Mithril.Children {
-    return `${app.translator.trans('justoverclock-profile-stories.forum.editStoryModal')}`;
+    return `${app.translator.trans('wyatts97-User-Stories.forum.editStoryModal')}`;
   }
 
   content(): Mithril.Children {
@@ -50,7 +50,7 @@ export default class EditStoryModal extends Modal<EditStoryModalAttrs> {
         <div className="new-story-content">
           <div className="story-step-container">
             <label htmlFor="title">
-              {app.translator.trans('justoverclock-profile-stories.forum.storyTitleInput')}
+              {app.translator.trans('wyatts97-User-Stories.forum.storyTitleInput')}
             </label>
             <input
               value={this.story_title()}
@@ -60,70 +60,70 @@ export default class EditStoryModal extends Modal<EditStoryModalAttrs> {
               type="text"
             />
             <label htmlFor="story_imgUrl">
-              {app.translator.trans('justoverclock-profile-stories.forum.storyImgInput')}
+              {app.translator.trans('wyatts97-User-Stories.forum.storyImgInput')}
             </label>
             <input
               value={this.story_imgUrl()}
               oninput={(e: { target: { value: string } }) => this.story_imgUrl(e.target.value)}
-              placeholder={app.translator.trans('justoverclock-profile-stories.forum.storyImage')}
+              placeholder={app.translator.trans('wyatts97-User-Stories.forum.storyImage')}
               className="FormControl"
               type="url"
             />
             <label htmlFor="story_cta">
-              {app.translator.trans('justoverclock-profile-stories.forum.storyBtnTextInput')}
+              {app.translator.trans('wyatts97-User-Stories.forum.storyBtnTextInput')}
             </label>
             <input
               value={this.story_cta()}
               oninput={(e: { target: { value: string } }) => this.story_cta(e.target.value)}
-              placeholder={app.translator.trans('justoverclock-profile-stories.forum.storyCta')}
+              placeholder={app.translator.trans('wyatts97-User-Stories.forum.storyCta')}
               className="FormControl"
               type="text"
             />
             <label htmlFor="story_icon">
-              {app.translator.trans('justoverclock-profile-stories.forum.storyIconInput')}
+              {app.translator.trans('wyatts97-User-Stories.forum.storyIconInput')}
             </label>
             <input
               value={this.story_icon()}
               oninput={(e: { target: { value: string } }) => this.story_icon(e.target.value)}
-              placeholder={app.translator.trans('justoverclock-profile-stories.forum.storyIcon')}
+              placeholder={app.translator.trans('wyatts97-User-Stories.forum.storyIcon')}
               className="FormControl"
               type="text"
             />
             <label htmlFor="story_content_link">
-              {app.translator.trans('justoverclock-profile-stories.forum.storyLinkInput')}
+              {app.translator.trans('wyatts97-User-Stories.forum.storyLinkInput')}
             </label>
             <input
               value={this.story_content_link()}
               oninput={(e: { target: { value: string } }) => this.story_content_link(e.target.value)}
-              placeholder={app.translator.trans('justoverclock-profile-stories.forum.storyContentLink')}
+              placeholder={app.translator.trans('wyatts97-User-Stories.forum.storyContentLink')}
               className="FormControl"
               type="text"
             />
             <label htmlFor="story_content_cta">
-              {app.translator.trans('justoverclock-profile-stories.forum.storyLinkButtonInput')}
+              {app.translator.trans('wyatts97-User-Stories.forum.storyLinkButtonInput')}
             </label>
             <input
               value={this.story_content_cta()}
               oninput={(e: { target: { value: string } }) => this.story_content_cta(e.target.value)}
-              placeholder={app.translator.trans('justoverclock-profile-stories.forum.storyContentCta')}
+              placeholder={app.translator.trans('wyatts97-User-Stories.forum.storyContentCta')}
               className="FormControl"
               type="text"
             />
             <label htmlFor="story_text">
-              {app.translator.trans('justoverclock-profile-stories.forum.storyTextInput')}
+              {app.translator.trans('wyatts97-User-Stories.forum.storyTextInput')}
             </label>
             <textarea
               rows={6}
               value={this.story_text()}
               oninput={(e: { target: { value: string } }) => this.story_text(e.target.value)}
-              placeholder={app.translator.trans('justoverclock-profile-stories.forum.storyContentText')}
+              placeholder={app.translator.trans('wyatts97-User-Stories.forum.storyContentText')}
               className="FormControl"
             />
           </div>
         </div>
         <form className="new-story-actions">
           <button className="Button" onclick={this.editStory.bind(this)}>
-            {app.translator.trans('justoverclock-profile-stories.forum.editStoryModalBtn')}
+            {app.translator.trans('wyatts97-User-Stories.forum.editStoryModalBtn')}
           </button>
         </form>
       </div>
@@ -153,7 +153,7 @@ export default class EditStoryModal extends Modal<EditStoryModalAttrs> {
       })
       .then(() => {
         this.hide();
-        app.alerts.show({ type: 'success' }, app.translator.trans('justoverclock-profile-stories.forum.successEdited'));
+        app.alerts.show({ type: 'success' }, app.translator.trans('wyatts97-User-Stories.forum.successEdited'));
       });
   }
 }

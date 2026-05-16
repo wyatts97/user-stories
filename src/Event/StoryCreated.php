@@ -1,6 +1,6 @@
-<?php
+﻿<?php
 
-namespace Justoverclock\ProfileStories\Event;
+namespace Wyatts97\UserStories\Event;
 
 class StoryCreated
 {

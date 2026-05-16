@@ -1,6 +1,6 @@
-<?php
+﻿<?php
 
-namespace Justoverclock\ProfileStories\Controller;
+namespace Wyatts97\UserStories\Controller;
 
 use Flarum\Http\RequestUtil;
 use Flarum\Api\Controller\AbstractCreateController;
@@ -9,7 +9,7 @@ use Flarum\User\Exception\PermissionDeniedException;
 use Illuminate\Contracts\Filesystem\Factory as FilesystemFactory;
 use Illuminate\Contracts\Filesystem\FileExistsException;
 use Illuminate\Support\Arr;
-use Justoverclock\ProfileStories\Serializer\BannerUploadSerializer;
+use Wyatts97\UserStories\Serializer\BannerUploadSerializer;
 use Laminas\Diactoros\UploadedFile;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
@@ -45,11 +45,11 @@ class BannerUploadController extends AbstractCreateController
         $extension = pathinfo($originalName, PATHINFO_EXTENSION);
 
         $uniqueName = uniqid('storyBanner_') . '.' . $extension;
-        $filePath = "extensions/justoverclock-profile-stories/$uniqueName";
+        $filePath = "extensions/wyatts97-User-Stories/$uniqueName";
         $stream = $uploadedFile->getStream()->getContents();
         $this->uploadDir->write($filePath, $stream);
 
-        $this->settings->set('justoverclock-profile-stories.imagePreview', $filePath);
+        $this->settings->set('wyatts97-User-Stories.imagePreview', $filePath);
 
         return (object)[
             'id' => uniqid(),

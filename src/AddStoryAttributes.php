@@ -1,6 +1,6 @@
-<?php
+﻿<?php
 
-namespace Justoverclock\ProfileStories;
+namespace Wyatts97\UserStories;
 
 use Flarum\Api\Serializer\UserSerializer;
 use Flarum\User\User;

@@ -1,7 +1,7 @@
-<?php
+﻿<?php
 
 /*
- * This file is part of justoverclock/profile-stories.
+ * This file is part of wyatts97/User-Stories.
  *
  * Copyright (c) 2024 Marco Colia.
  *
@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Justoverclock\ProfileStories;
+namespace Wyatts97\UserStories;
 
 use Flarum\Api\Resource\UserResource;
 use Flarum\Extend;
 use Flarum\User\User;
-use Justoverclock\ProfileStories\Api\StoryResource;
-use Justoverclock\ProfileStories\Controller\BannerUploadController;
-use Justoverclock\ProfileStories\Event\StoryCreated;
-use Justoverclock\ProfileStories\Listener\SendNotificationOnNewStory;
-use Justoverclock\ProfileStories\Model\Story;
-use Justoverclock\ProfileStories\Notification\NewStoryNotificationBlueprint;
+use Wyatts97\UserStories\Api\StoryResource;
+use Wyatts97\UserStories\Controller\BannerUploadController;
+use Wyatts97\UserStories\Event\StoryCreated;
+use Wyatts97\UserStories\Listener\SendNotificationOnNewStory;
+use Wyatts97\UserStories\Model\Story;
+use Wyatts97\UserStories\Notification\NewStoryNotificationBlueprint;
 
 return [
     (new Extend\Frontend('forum'))
@@ -51,5 +51,5 @@ return [
         ->listen(StoryCreated::class, SendNotificationOnNewStory::class, 'handle'),
 
     (new Extend\Settings)
-        ->serializeToForum('justoverclock-profile-stories.imagePreview', 'justoverclock-profile-stories.imagePreview'),
+        ->serializeToForum('wyatts97-User-Stories.imagePreview', 'wyatts97-User-Stories.imagePreview'),
 ];

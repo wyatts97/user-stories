@@ -1,10 +1,10 @@
-<?php
+﻿<?php
 
-namespace Justoverclock\ProfileStories\Notification;
+namespace Wyatts97\UserStories\Notification;
 
 use Flarum\Notification\Blueprint\BlueprintInterface;
 use Flarum\User\User;
-use Justoverclock\ProfileStories\Model\Story;
+use Wyatts97\UserStories\Model\Story;
 
 class NewStoryNotificationBlueprint implements BlueprintInterface
 {

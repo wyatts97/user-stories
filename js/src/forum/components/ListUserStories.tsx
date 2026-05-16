@@ -1,4 +1,4 @@
-import Component, { ComponentAttrs } from 'flarum/common/Component';
+﻿import Component, { ComponentAttrs } from 'flarum/common/Component';
 import Mithril from 'mithril';
 import app from 'flarum/forum/app';
 import CreateStoryModal from './modals/CreateStoryModal';
@@ -62,7 +62,7 @@ export default class ListUserStories extends Component<CreateStoryAttrs> {
       })
       .then(() => {
         this.getAllUserStory();
-        app.alerts.show({ type: 'success' }, app.translator.trans('justoverclock-profile-stories.forum.successDelete'));
+        app.alerts.show({ type: 'success' }, app.translator.trans('wyatts97-User-Stories.forum.successDelete'));
       });
   }
 
@@ -80,7 +80,7 @@ export default class ListUserStories extends Component<CreateStoryAttrs> {
             {!canCreateStory && <PermissionDenied />}
             {canCreateStory && (
               <button onclick={this.showCreateStoryModal.bind(this)} className="Button Button--primary stories-btn">
-                {app.translator.trans('justoverclock-profile-stories.forum.createStory')}
+                {app.translator.trans('wyatts97-User-Stories.forum.createStory')}
               </button>
             )}
             <div className="stories-all">
@@ -108,7 +108,7 @@ export default class ListUserStories extends Component<CreateStoryAttrs> {
                         }}
                         className="Button"
                       >
-                        {story.attributes.cta || app.translator.trans('justoverclock-profile-stories.forum.viewLink')}
+                        {story.attributes.cta || app.translator.trans('wyatts97-User-Stories.forum.viewLink')}
                       </button>
                       {canEditStory && (
                         <button
@@ -139,14 +139,14 @@ export default class ListUserStories extends Component<CreateStoryAttrs> {
                 this.getAllUserStory(link);
               }}
             >
-              {app.translator.trans('justoverclock-profile-stories.forum.prevPage')}
+              {app.translator.trans('wyatts97-User-Stories.forum.prevPage')}
             </button>
             <button
               disabled={this.userStories && this.userStories?.data.length <= 8}
               class="Button"
               onclick={() => this.getAllUserStory(this.userStories?.links.next)}
             >
-              {app.translator.trans('justoverclock-profile-stories.forum.nextPage')}
+              {app.translator.trans('wyatts97-User-Stories.forum.nextPage')}
             </button>
           </div>
         )}

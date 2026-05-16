@@ -1,6 +1,6 @@
-<?php
+﻿<?php
 
-namespace Justoverclock\ProfileStories\Api;
+namespace Wyatts97\UserStories\Api;
 
 use Flarum\Api\Context;
 use Flarum\Api\Endpoint;
@@ -11,7 +11,7 @@ use Flarum\Filter\FilterState;
 use Flarum\Http\RequestUtil;
 use Flarum\User\User;
 use Illuminate\Database\Eloquent\Builder;
-use Justoverclock\ProfileStories\Model\Story;
+use Wyatts97\UserStories\Model\Story;
 use Tobscure\JsonApi\Document;
 
 /**

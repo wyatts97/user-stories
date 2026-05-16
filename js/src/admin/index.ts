@@ -1,14 +1,14 @@
-import app from 'flarum/admin/app';
+﻿import app from 'flarum/admin/app';
 import StoriesSettingsPage from './components/StoriesSettingsPage';
 
-app.initializers.add('justoverclock/profile-stories', () => {
+app.initializers.add('wyatts97/User-Stories', () => {
   app.extensionData
-    .for('justoverclock-profile-stories')
+    .for('wyatts97-User-Stories')
     .registerPage(StoriesSettingsPage)
     .registerPermission(
       {
         icon: 'fas fa-book-open',
-        label: app.translator.trans('justoverclock-profile-stories.admin.permission.createStory'),
+        label: app.translator.trans('wyatts97-User-Stories.admin.permission.createStory'),
         permission: 'createStory',
         allowGuest: false,
       },
@@ -17,7 +17,7 @@ app.initializers.add('justoverclock/profile-stories', () => {
     .registerPermission(
       {
         icon: 'fas fa-book-open',
-        label: app.translator.trans('justoverclock-profile-stories.admin.permission.viewStory'),
+        label: app.translator.trans('wyatts97-User-Stories.admin.permission.viewStory'),
         permission: 'viewStory',
         allowGuest: true,
       },
@@ -26,7 +26,7 @@ app.initializers.add('justoverclock/profile-stories', () => {
     .registerPermission(
       {
         icon: 'fas fa-book-open',
-        label: app.translator.trans('justoverclock-profile-stories.admin.permission.editStory'),
+        label: app.translator.trans('wyatts97-User-Stories.admin.permission.editStory'),
         permission: 'editStory',
         allowGuest: false,
       },
@@ -35,7 +35,7 @@ app.initializers.add('justoverclock/profile-stories', () => {
     .registerPermission(
       {
         icon: 'fas fa-book-open',
-        label: app.translator.trans('justoverclock-profile-stories.admin.permission.deleteStory'),
+        label: app.translator.trans('wyatts97-User-Stories.admin.permission.deleteStory'),
         permission: 'deleteStory',
         allowGuest: false,
       },

@@ -1,12 +1,12 @@
-<?php
+﻿<?php
 
-namespace Justoverclock\ProfileStories\Listener;
+namespace Wyatts97\UserStories\Listener;
 
 use Flarum\Notification\NotificationSyncer;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Flarum\User\User;
-use Justoverclock\ProfileStories\Event\StoryCreated;
-use Justoverclock\ProfileStories\Notification\NewStoryNotificationBlueprint;
+use Wyatts97\UserStories\Event\StoryCreated;
+use Wyatts97\UserStories\Notification\NewStoryNotificationBlueprint;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SendNotificationOnNewStory

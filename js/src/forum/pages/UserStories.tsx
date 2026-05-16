@@ -1,4 +1,4 @@
-import UserPage, { IUserPageAttrs } from 'flarum/forum/components/UserPage';
+﻿import UserPage, { IUserPageAttrs } from 'flarum/forum/components/UserPage';
 import Mithril from 'mithril';
 import app from 'flarum/forum/app';
 import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
@@ -12,9 +12,9 @@ export interface StoriesPageAttrs extends IUserPageAttrs {
 
 export default class UserStories extends UserPage<StoriesPageAttrs> {
   public assetPath = `${app.forum.attribute('baseUrl')}/assets/`;
-  public fullPath = `${app.forum.attribute('baseUrl')}/assets/${app.forum.attribute('justoverclock-profile-stories.imagePreview')}`;
+  public fullPath = `${app.forum.attribute('baseUrl')}/assets/${app.forum.attribute('wyatts97-User-Stories.imagePreview')}`;
   public fallback = 'https://placehold.co/1920x400';
-  public heroBg = app.forum.attribute('justoverclock-profile-stories.imagePreview') ? this.fullPath : this.fallback;
+  public heroBg = app.forum.attribute('wyatts97-User-Stories.imagePreview') ? this.fullPath : this.fallback;
 
   oninit(vnode: Mithril.Vnode<IUserPageAttrs, this>) {
     super.oninit(vnode);
@@ -28,7 +28,7 @@ export default class UserStories extends UserPage<StoriesPageAttrs> {
           <img className="hero-bg" src={this.heroBg} alt="user stories" />
           <h1 className="hero-title">
             {this.attrs.username}
-            {app.translator.trans('justoverclock-profile-stories.forum.heroTitle')}
+            {app.translator.trans('wyatts97-User-Stories.forum.heroTitle')}
           </h1>
         </div>
         {this.user ? (

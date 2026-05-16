@@ -1,4 +1,4 @@
-import Component from 'flarum/common/Component';
+﻿import Component from 'flarum/common/Component';
 import type { ComponentAttrs } from 'flarum/common/Component';
 import Mithril from 'mithril';
 import app from 'flarum/forum/app';
@@ -78,7 +78,7 @@ export default class StoriesBar extends Component<ComponentAttrs> {
             <div className="StoriesBar-ring StoriesBar-ring--yours">
               <Avatar user={currentUser} className="StoriesBar-avatar" />
             </div>
-            <span className="StoriesBar-label">{app.translator.trans('justoverclock-profile-stories.forum.yourStory')}</span>
+            <span className="StoriesBar-label">{app.translator.trans('wyatts97-User-Stories.forum.yourStory')}</span>
           </div>
 
           {/* Followed users' stories */}

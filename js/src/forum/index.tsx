@@ -1,4 +1,4 @@
-import app from 'flarum/forum/app';
+﻿import app from 'flarum/forum/app';
 import { extend, override } from 'flarum/common/extend';
 import UserStories from './pages/UserStories';
 import UserPage from 'flarum/forum/components/UserPage';
@@ -14,7 +14,7 @@ import NewStoryNotification from './components/notifications/NewStoryNotificatio
 import NotificationGrid from 'flarum/forum/components/NotificationGrid';
 import { REP_NOTIFICATIONS } from './notifications';
 
-app.initializers.add('justoverclock/profile-stories', () => {
+app.initializers.add('wyatts97/User-Stories', () => {
   app.notificationComponents.newStory = NewStoryNotification;
 
   app.routes['user.stories'] = {
@@ -51,7 +51,7 @@ app.initializers.add('justoverclock/profile-stories', () => {
         'storiesCount',
         <span className="UserCard-storiesCount">
           {icon('fas fa-book-open')}
-          {app.translator.trans('justoverclock-profile-stories.forum.stories-count', { count: storyCount })}
+          {app.translator.trans('wyatts97-User-Stories.forum.stories-count', { count: storyCount })}
         </span>
       );
     }
@@ -64,7 +64,7 @@ app.initializers.add('justoverclock/profile-stories', () => {
       items.add(
         'profilestories',
         <LinkButton href={app.route('user.stories', { username: user?.slug() })} name="stories" icon="fas fa-book-open">
-          {app.translator.trans('justoverclock-profile-stories.forum.stories')}
+          {app.translator.trans('wyatts97-User-Stories.forum.stories')}
         </LinkButton>
       );
     }
