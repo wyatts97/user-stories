@@ -1,26 +1,25 @@
-# Profile Stories (free)
+# Profile Stories — Instagram-Style Fork
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/justoverclock/profile-stories.svg)](https://packagist.org/packages/justoverclock/profile-stories) [![Total Downloads](https://img.shields.io/packagist/dt/justoverclock/profile-stories.svg)](https://packagist.org/packages/justoverclock/profile-stories)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-A [Flarum](https://flarum.org) extension. Profile Stories for Flarum
+A modern, Instagram-style stories extension for [Flarum](https://flarum.org). This is a fork of [justoverclock/profile-stories](https://github.com/justoverclockl/profile-stories) rebuilt for **Flarum 2.x** with a completely redesigned user experience.
 
-## Custom stories for Flarum Users
-This extension is sponsored by [Capybara](https://discuss.flarum.org/u/Capybara), and add
-a custom stories system for users. Groups or users with permissions "canCreateStory" can
-create a story on a user profile that is displayed in:
+## What's New
 
-- User profile card (as a count)
-- User profile page (as a list of cards)
-- Custom page that shows all users stories together
-- Notifications for new stories
+This fork transforms the original simple profile stories into a polished, Instagram-like stories system:
 
-![all](https://res.cloudinary.com/dt74zb1rv/image/upload/v1736261982/qiy1jkmrmtxxb4nhdqw4.png)
-![all](https://res.cloudinary.com/dt74zb1rv/image/upload/v1736262126/dw4guylolu8msttdyxp9.png)
-![all](https://res.cloudinary.com/dt74zb1rv/image/upload/v1736262195/qtonbxllp6efmakcmkon.png)
-![all](https://res.cloudinary.com/dt74zb1rv/image/upload/v1736262261/ormqtravzyelv5aza6dl.png)
-![all](https://res.cloudinary.com/dt74zb1rv/image/upload/v1736262318/uygeyulanzzr2ezbwspo.png)
+- **24-hour expiring stories** — Stories automatically expire after 24 hours and are hidden from the feed
+- **Follow-based stories bar** — Logged-in users see a horizontal scrollable bar of circle avatars from users they follow, displayed on the home/index page
+- **Instagram-style gradient rings** — Unseen stories get a colorful conic-gradient ring around the avatar (just like Instagram)
+- **Full-screen story viewer** — Tap left/right to navigate, segmented progress bars at the top, auto-advance timer, caption overlay
+- **Polished create modal** — Single-step story composer with live image preview, caption input, and optional link CTA
+- **Removed global stories page** — Stories are now follow-based instead of a global listing
+- **Flarum 2.x compatible** — Built on the new `ApiResource` architecture
 
+## Requirements
 
+- **Flarum `^2.0`**
+- **[ianm/follow-users](https://github.com/imorland/follow-users)** — Required dependency for the follow system
 
 ## Installation
 
@@ -38,8 +37,21 @@ php flarum migrate
 php flarum cache:clear
 ```
 
+## Features
+
+- Create stories with images, captions, and optional link CTAs
+- Stories appear in a horizontal bar on the **index page** for logged-in users
+- Only shows stories from **followed users** (via `ianm/follow-users`)
+- Stories **expire after 24 hours** and are automatically filtered out
+- Profile stories page (`/u/:username/stories`) is still available
+- Notifications when someone creates a new story
+- Permission-based story creation, editing, and deletion
+
+## Credits
+
+- Original extension by [Marco Colia (justoverclock)](https://github.com/justoverclockl/profile-stories)
+- Fork rebuilt for Flarum 2.x with Instagram-style UX
+
 ## Links
 
-- [Packagist](https://packagist.org/packages/justoverclock/profile-stories)
-- [GitHub](https://github.com/justoverclock/profile-stories)
-- [Discuss](https://discuss.flarum.org/d/PUT_DISCUSS_SLUG_HERE)
+- [Original Repository](https://github.com/justoverclockl/profile-stories)

@@ -1,19 +1,17 @@
 import app from 'flarum/forum/app';
-import { extend } from 'flarum/common/extend';
+import { extend, override } from 'flarum/common/extend';
 import UserStories from './pages/UserStories';
 import UserPage from 'flarum/forum/components/UserPage';
 import Mithril from 'mithril';
 import ItemList from 'flarum/common/utils/ItemList';
 import UserCard from 'flarum/forum/components/UserCard';
-// @ts-ignore
-import LinkButton from 'flarum/components/LinkButton';
+import LinkButton from 'flarum/common/components/LinkButton';
 import icon from 'flarum/common/helpers/icon';
 import type User from 'flarum/common/models/User';
-import GlobalStories from './pages/GlobalStories';
 import IndexPage from 'flarum/forum/components/IndexPage';
+import StoriesBar from './components/StoriesBar';
 import NewStoryNotification from './components/notifications/NewStoryNotification';
 import NotificationGrid from 'flarum/forum/components/NotificationGrid';
-import Notification from 'flarum/forum/components/Notification';
 import { REP_NOTIFICATIONS } from './notifications';
 
 app.initializers.add('justoverclock/profile-stories', () => {
@@ -22,11 +20,6 @@ app.initializers.add('justoverclock/profile-stories', () => {
   app.routes['user.stories'] = {
     path: '/u/:username/stories',
     component: UserStories,
-  };
-
-  app.routes.globalStories = {
-    path: '/all-users-stories',
-    component: GlobalStories,
   };
 
   extend(NotificationGrid.prototype, 'notificationTypes', function (items) {
@@ -39,17 +32,18 @@ app.initializers.add('justoverclock/profile-stories', () => {
     });
   });
 
-  extend(IndexPage.prototype, 'navItems', function (items) {
-    items.add(
-      'globalStories',
-      <LinkButton href={app.route('globalStories')} icon="fas fa-book-open">
-        {app.translator.trans('justoverclock-profile-stories.forum.globalStories')}
-      </LinkButton>
-    );
+  // Inject StoriesBar below the header on the index page
+  override(IndexPage.prototype, 'view', function (original, ...args) {
+    const vnode = original.apply(this, args);
+
+    if (vnode && vnode.children && Array.isArray(vnode.children)) {
+      vnode.children.unshift(<StoriesBar />);
+    }
+
+    return vnode;
   });
 
   extend(UserCard.prototype, 'infoItems', function (items) {
-    // @ts-expect-error
     const user = this.attrs.user as User;
     const storyCount = user.data?.attributes?.storyCount;
     if (user && app.session.user) {
@@ -64,7 +58,6 @@ app.initializers.add('justoverclock/profile-stories', () => {
   });
 
   extend(UserPage.prototype, 'navItems', function (items: ItemList<Mithril.Children>) {
-    // @ts-ignore missing type-hint in Flarum
     const user = this.user;
 
     if (user) {

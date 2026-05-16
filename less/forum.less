@@ -1,3 +1,301 @@
+/* ─── StoriesBar ─── */
+.StoriesBar {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--control-bg);
+  background: var(--body-bg);
+}
+
+.StoriesBar-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 0 16px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
+}
+
+.StoriesBar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  min-width: 72px;
+  flex-shrink: 0;
+}
+
+.StoriesBar-ring {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  padding: 3px;
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    #f09433 0deg,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.StoriesBar-ring--yours {
+  background: none;
+  border: 2px dashed var(--muted-color);
+}
+
+.StoriesBar-avatar {
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 50%;
+  border: 2px solid var(--body-bg);
+  background: var(--body-bg);
+}
+
+.StoriesBar-label {
+  font-size: 11px;
+  color: var(--muted-color);
+  max-width: 64px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ─── StoryViewerModal ─── */
+.StoryViewerModal {
+  .Modal-content {
+    background: #000;
+    border-radius: 0;
+  }
+}
+
+.StoryViewerModal-container {
+  position: relative;
+  width: 100vw;
+  max-width: 480px;
+  height: 85vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.StoryViewerModal-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 4px;
+  padding: 8px;
+  z-index: 10;
+}
+
+.StoryViewerModal-progressTrack {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.StoryViewerModal-progressFill {
+  height: 100%;
+  background: #fff;
+  border-radius: 2px;
+  transition: width 0.05s linear;
+}
+
+.StoryViewerModal-header {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  z-index: 10;
+}
+
+.StoryViewerModal-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+}
+
+.StoryViewerModal-avatar {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50%;
+}
+
+.StoryViewerModal-username {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.StoryViewerModal-time {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.StoryViewerModal-close {
+  color: #fff;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.StoryViewerModal-media {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.StoryViewerModal-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.StoryViewerModal-noMedia {
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+
+  i {
+    font-size: 48px;
+  }
+}
+
+.StoryViewerModal-tapZone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 30%;
+  z-index: 5;
+}
+
+.StoryViewerModal-tapZone--left {
+  left: 0;
+}
+
+.StoryViewerModal-tapZone--right {
+  right: 0;
+}
+
+.StoryViewerModal-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+  z-index: 10;
+}
+
+.StoryViewerModal-caption {
+  color: #fff;
+  font-size: 14px;
+  margin: 0 0 8px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.StoryViewerModal-link {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.StoryViewerModal-counter {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 11px;
+  z-index: 10;
+}
+
+/* ─── CreateStoryModal ─── */
+.CreateStoryModal-content {
+  padding: 16px;
+}
+
+.CreateStoryModal-preview {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  max-height: 280px;
+  border-radius: 12px;
+  background: var(--control-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.CreateStoryModal-previewImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.CreateStoryModal-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted-color);
+
+  i {
+    font-size: 36px;
+  }
+}
+
+.CreateStoryModal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.CreateStoryModal-advanced {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--control-bg);
+}
+
+.CreateStoryModal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* ─── Existing profile page styles (kept) ─── */
 .stories-hero {
   display: flex;
   justify-content: center;
@@ -33,22 +331,6 @@
   width: fit-content;
 }
 
-.stories-all {
-  padding-top: 2rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-}
-
-@media (max-width: 767px) {
-  .stories-all {
-    padding-top: 2rem;
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 1rem;
-  }
-}
-
 .story-item {
   padding: 1rem;
   display: flex;
@@ -56,37 +338,12 @@
   flex-direction: column;
   border-radius: 8px;
   min-height: 250px;
+  transition: transform .2s ease-in-out;
+  cursor: pointer;
 }
 
-.new-story-container {
-  padding: 2rem;
-}
-
-.new-story-content {
-  padding-bottom: 2rem;
-}
-
-.new-story-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-}
-
-.story-step-container {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.permission-denied-container {
-  border: 1px dashed @primary-color;
-  border-radius: 5px;
-  width: fit-content;
-}
-
-.permission-denied-content {
-  padding: 1rem;
-  color: @primary-color;
+.story-item:hover {
+  transform: scale(1.03);
 }
 
 .story-text-wrapper {
@@ -111,112 +368,25 @@
   }
 }
 
-.complete-story-container {
-  padding: 2rem;
-}
-
-.complete-story-content {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.complete-story-img {
-  width: 100%;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.story-icon {
-  text-align: center;
-  font-size: 30px;
-  margin-bottom: 2rem;
-}
-
-body when (@config-dark-mode = false) {
-
-}
-
-.complete-story-title {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-
-  h3 {
-    margin: 0;
-    font-size: 20px;
-  }
-}
-
 .user-story-pagination {
   display: flex;
   justify-content: space-between;
   padding-top: 3rem;
 }
 
-.story-text-wrapper-global {
-  background-color: rgba(0,0,0,0.5);
-  margin-bottom: 1rem;
-  border-radius: 8px;
-  padding: .5rem;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-
-  a {
-    text-decoration: none;
-  }
-
-  i {
-    font-size: 15px;
-  }
-
-  h3 {
-    margin: 0
-  }
+.permission-denied-container {
+  border: 1px dashed @primary-color;
+  border-radius: 5px;
+  width: fit-content;
 }
 
-.global-stories-description {
-  margin-top: 1rem;
+.permission-denied-content {
+  padding: 1rem;
+  color: @primary-color;
 }
 
-.complete-story-content p {
-  margin-top: 1rem;
-}
-
-.story-item {
-  transition: transform .2s ease-in-out;
-  cursor: pointer;
-}
-
-.story-item:hover {
-  transform: scale(1.03);
-}
-
-.story-actions-btn {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-
-.complete-story-btn {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.global-stories-details {
-  display: flex;
-  gap: 8px;
+.UserCard-storiesCount {
+  display: inline-flex;
   align-items: center;
-}
-
-.gs-avatar {
-  width: 30px;
-  height: 30px;
-  font-size: small;
-
-  i {
-    font-size: smaller;
-  }
+  gap: 4px;
 }

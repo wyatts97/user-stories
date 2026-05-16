@@ -4,23 +4,21 @@ import app from 'flarum/forum/app';
 import Stream from 'flarum/common/utils/Stream';
 
 export interface CreateStoryModalAttrs extends IInternalModalAttrs {
-  refreshStories: () => void;
-  username: string;
   userId: string | number;
+  username: string;
+  onCreated?: () => void;
 }
 
 export default class CreateStoryModal extends Modal<CreateStoryModalAttrs> {
-  public step: number = 0;
-  story_title = Stream('');
-  story_imgUrl = Stream('');
-  story_cta = Stream('');
-  story_icon = Stream('');
-  story_text = Stream('');
-  story_content_cta = Stream('');
-  story_content_link = Stream('');
+  mediaUrl = Stream('');
+  caption = Stream('');
+  storyTitle = Stream('');
+  contentLink = Stream('');
+  contentCta = Stream('');
+  loading: boolean = false;
 
   className(): string {
-    return 'create-story-modal';
+    return 'CreateStoryModal Modal--small';
   }
 
   title(): Mithril.Children {
@@ -28,126 +26,118 @@ export default class CreateStoryModal extends Modal<CreateStoryModalAttrs> {
   }
 
   content(): Mithril.Children {
+    const previewUrl = this.mediaUrl();
+
     return (
-      <div className="new-story-container">
-        <div className="new-story-content">
-          {this.step === 0 && (
-            <div className="story-step-container">
-              <input
-                value={this.story_title()}
-                oninput={(e: { target: { value: string } }) => this.story_title(e.target.value)}
-                placeholder={app.translator.trans('justoverclock-profile-stories.forum.storyTitle')}
-                className="FormControl"
-                type="text"
-              />
-              <input
-                value={this.story_imgUrl()}
-                oninput={(e: { target: { value: string } }) => this.story_imgUrl(e.target.value)}
-                placeholder={app.translator.trans('justoverclock-profile-stories.forum.storyImage')}
-                className="FormControl"
-                type="url"
-              />
-              <input
-                value={this.story_cta()}
-                oninput={(e: { target: { value: string } }) => this.story_cta(e.target.value)}
-                placeholder={app.translator.trans('justoverclock-profile-stories.forum.storyCta')}
-                className="FormControl"
-                type="text"
-              />
-            </div>
-          )}
-          {this.step === 1 && (
-            <div className="story-step-container">
-              <input
-                value={this.story_icon()}
-                oninput={(e: { target: { value: string } }) => this.story_icon(e.target.value)}
-                placeholder={app.translator.trans('justoverclock-profile-stories.forum.storyIcon')}
-                className="FormControl"
-                type="text"
-              />
-              <input
-                value={this.story_content_link()}
-                oninput={(e: { target: { value: string } }) => this.story_content_link(e.target.value)}
-                placeholder={app.translator.trans('justoverclock-profile-stories.forum.storyContentLink')}
-                className="FormControl"
-                type="text"
-              />
-              <input
-                value={this.story_content_cta()}
-                oninput={(e: { target: { value: string } }) => this.story_content_cta(e.target.value)}
-                placeholder={app.translator.trans('justoverclock-profile-stories.forum.storyContentCta')}
-                className="FormControl"
-                type="text"
-              />
-              <textarea
-                rows={6}
-                value={this.story_text()}
-                oninput={(e: { target: { value: string } }) => this.story_text(e.target.value)}
-                placeholder={app.translator.trans('justoverclock-profile-stories.forum.storyContentText')}
-                className="FormControl"
-              />
+      <div className="CreateStoryModal-content">
+        {/* Media preview */}
+        <div className="CreateStoryModal-preview">
+          {previewUrl ? (
+            <img src={previewUrl} alt="Story preview" className="CreateStoryModal-previewImg" />
+          ) : (
+            <div className="CreateStoryModal-placeholder">
+              <i className="fas fa-image" />
+              <span>{app.translator.trans('justoverclock-profile-stories.forum.previewPlaceholder')}</span>
             </div>
           )}
         </div>
-        <form className="new-story-actions" onsubmit={(e: { preventDefault: () => any }) => e.preventDefault()}>
-          <button disabled={this.step < 1} className="Button" onclick={this.stepDecrement.bind(this)}>
-            {app.translator.trans('justoverclock-profile-stories.forum.previousStepBtn')}
+
+        {/* Inputs */}
+        <div className="CreateStoryModal-form">
+          <input
+            value={this.mediaUrl()}
+            oninput={(e: { target: { value: string } }) => this.mediaUrl(e.target.value)}
+            placeholder={app.translator.trans('justoverclock-profile-stories.forum.mediaUrlPlaceholder')}
+            className="FormControl"
+            type="url"
+          />
+          <input
+            value={this.storyTitle()}
+            oninput={(e: { target: { value: string } }) => this.storyTitle(e.target.value)}
+            placeholder={app.translator.trans('justoverclock-profile-stories.forum.storyTitle')}
+            className="FormControl"
+            type="text"
+          />
+          <textarea
+            rows={3}
+            value={this.caption()}
+            oninput={(e: { target: { value: string } }) => this.caption(e.target.value)}
+            placeholder={app.translator.trans('justoverclock-profile-stories.forum.captionPlaceholder')}
+            className="FormControl"
+          />
+          <div className="CreateStoryModal-advanced">
+            <input
+              value={this.contentLink()}
+              oninput={(e: { target: { value: string } }) => this.contentLink(e.target.value)}
+              placeholder={app.translator.trans('justoverclock-profile-stories.forum.linkPlaceholder')}
+              className="FormControl"
+              type="url"
+            />
+            <input
+              value={this.contentCta()}
+              oninput={(e: { target: { value: string } }) => this.contentCta(e.target.value)}
+              placeholder={app.translator.trans('justoverclock-profile-stories.forum.linkCtaPlaceholder')}
+              className="FormControl"
+              type="text"
+            />
+          </div>
+        </div>
+
+        <div className="CreateStoryModal-actions">
+          <button className="Button" onclick={() => this.hide()}>
+            {app.translator.trans('justoverclock-profile-stories.forum.cancelBtn')}
           </button>
-          {this.step < 1 && (
-            <button className="Button" onclick={this.stepIncrement.bind(this)}>
-              {app.translator.trans('justoverclock-profile-stories.forum.nextStepBtn')}
-            </button>
-          )}
-          {this.step === 1 && (
-            <button onclick={this.complete.bind(this)} className="Button" type="submit">
-              {app.translator.trans('justoverclock-profile-stories.forum.saveBtn')}
-            </button>
-          )}
-        </form>
+          <button
+            className="Button Button--primary"
+            disabled={!this.mediaUrl() || this.loading}
+            onclick={this.submit.bind(this)}
+          >
+            {this.loading ? (
+              <i className="fas fa-spinner fa-spin" />
+            ) : (
+              app.translator.trans('justoverclock-profile-stories.forum.shareStoryBtn')
+            )}
+          </button>
+        </div>
       </div>
     );
   }
 
-  stepIncrement() {
-    if (this.step < 1) {
-      this.step++;
-      m.redraw();
-    }
-    m.redraw();
-  }
+  submit() {
+    if (!this.mediaUrl()) return;
 
-  stepDecrement() {
-    if (this.step > 0) {
-      this.step--;
-      m.redraw();
-    }
-    m.redraw();
-  }
+    this.loading = true;
 
-  complete() {
     app
       .request({
         method: 'POST',
-        url: `${app.forum.attribute('apiUrl')}/create-story`,
+        url: `${app.forum.attribute('apiUrl')}/stories`,
         body: {
           data: {
             attributes: {
-              user_id: this.attrs.userId,
-              title: this.story_title(),
-              img_url: this.story_imgUrl(),
-              cta: this.story_cta(),
-              content_icon: this.story_icon(),
-              content_text: this.story_text(),
-              content_cta: this.story_content_cta(),
-              content_link: this.story_content_link(),
-              username: this.attrs.username,
+              title: this.storyTitle() || 'Story',
+              media_url: this.mediaUrl(),
+              img_url: this.mediaUrl(),
+              caption: this.caption(),
+              media_type: 'image',
+              content_link: this.contentLink(),
+              content_cta: this.contentCta(),
             },
           },
         },
       })
       .then(() => {
+        this.loading = false;
         this.hide();
-        this.attrs.refreshStories();
+        app.alerts.show({ type: 'success' }, app.translator.trans('justoverclock-profile-stories.forum.storyCreatedSuccess'));
+        if (this.attrs.onCreated) {
+          this.attrs.onCreated();
+        }
+      })
+      .catch(() => {
+        this.loading = false;
+        app.alerts.show({ type: 'error' }, app.translator.trans('justoverclock-profile-stories.forum.storyCreatedError'));
+        m.redraw();
       });
   }
 }

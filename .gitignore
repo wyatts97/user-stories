@@ -1,1 +1,7 @@
 /avocado-theme-master
+/node_modules
+/.vscode
+/.idea
+/.DS_Store
+js/dist
+js/node_modules

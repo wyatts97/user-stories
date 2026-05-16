@@ -2,6 +2,7 @@ export interface StoryAttributes {
   id: number;
   userId: number;
   title: string;
+  mediaUrl: string;
   imgUrl: string;
   cta: string;
   username: string;
@@ -9,6 +10,9 @@ export interface StoryAttributes {
   contentText: string;
   contentCta: string;
   contentLink: string;
+  caption: string;
+  mediaType: string;
+  expiresAt: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -19,15 +23,9 @@ export interface Story {
   attributes: StoryAttributes;
 }
 
-export interface Links {
-  first: string;
-  next: string;
-  prev?: string;
-}
-
-export interface Meta {
-  total: number;
-  totalPages: number;
+export interface UserStoryGroup {
+  user: any;
+  stories: any[];
 }
 
 export interface ApiStoryResponse {
@@ -45,4 +43,18 @@ export interface ApiStoryResponse {
     total: number;
     totalPages: number;
   };
+}
+
+export interface FollowingStoriesResponse {
+  data: {
+    type: string;
+    id: string;
+    attributes: StoryAttributes;
+    relationships?: {
+      user?: {
+        data: { type: string; id: string };
+      };
+    };
+  }[];
+  included?: any[];
 }

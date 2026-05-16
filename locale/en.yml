@@ -4,7 +4,7 @@ justoverclock-profile-stories:
     uploadLabelHelp: Keep in mind that the image should be minimum 1920px wide
     permission:
       createStory: Create new story
-      viewStory: View global stories
+      viewStory: View stories
       editStory: Edit stories
       deleteStory: Delete stories
 
@@ -19,14 +19,12 @@ justoverclock-profile-stories:
     editStoryModalBtn: Confirm
     successEdited: Story successfully changed!
     successDelete: Story successfully deleted!
-    globalStoriesEmpty: There are no stories yet.
-    globalStoriesDescription: This section contains all the stories earned by our users!
     heroTitle: "'s Stories"
     StoryModalTitle: "'s Story"
     createStory: Create story
     stories: Stories
-    storyTitle: Story title (short)...
-    storyImage: Story image URL (preferred size 500x300)
+    storyTitle: Story title...
+    storyImage: Story image URL
     storyIcon: fas fa-user
     storyCta: Button text
     storyContentText: Text or HTML for the complete story
@@ -39,8 +37,19 @@ justoverclock-profile-stories:
     prevPage: previous
     youDontHavePermission: You don't have permissions to create a new story!
     stories-count: " {count, plural, one { {count} story} other {{count} stories}}"
-    globalStories: Users stories
-    globalStoriesTitle: Users stories
     editStoryModal: Edit story
     notifications:
       newStory: You have a new profile story!
+    yourStory: Your Story
+    mediaUrlPlaceholder: Image URL...
+    captionPlaceholder: Add a caption...
+    linkPlaceholder: Link URL (optional)
+    linkCtaPlaceholder: Link button text (optional)
+    previewPlaceholder: Paste an image URL to preview
+    cancelBtn: Cancel
+    shareStoryBtn: Share Story
+    storyCreatedSuccess: Story shared successfully!
+    storyCreatedError: Could not share story. Please try again.
+    noStories: No stories to show.
+    noImage: No image available
+    viewLink: View link

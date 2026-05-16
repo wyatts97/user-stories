@@ -3,8 +3,8 @@ import Mithril from 'mithril';
 import app from 'flarum/forum/app';
 import CreateStoryModal from './modals/CreateStoryModal';
 import PermissionDenied from './PermissionDenied';
-import { ApiStoryResponse, Story } from '../types';
-import CompleteStoryModal from './modals/CompleteStoryModal';
+import { ApiStoryResponse, Story, UserStoryGroup } from '../types';
+import StoryViewerModal from './modals/StoryViewerModal';
 import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
 import User from 'flarum/common/models/User';
 import EditStoryModal from "./modals/EditStoryModal";
@@ -30,7 +30,7 @@ export default class ListUserStories extends Component<CreateStoryAttrs> {
 
   showCreateStoryModal() {
     app.modal.show(CreateStoryModal, {
-      refreshStories: this.getAllUserStory.bind(this),
+      onCreated: this.getAllUserStory.bind(this),
       username: this.attrs.user.data?.attributes?.username,
       userId: this.attrs.user.id(),
     });
@@ -58,7 +58,7 @@ export default class ListUserStories extends Component<CreateStoryAttrs> {
     app
       .request({
         method: 'DELETE',
-        url: `${app.forum.attribute('apiUrl')}/delete-story/${storyId}`,
+        url: `${app.forum.attribute('apiUrl')}/stories/${storyId}`,
       })
       .then(() => {
         this.getAllUserStory();
@@ -100,8 +100,15 @@ export default class ListUserStories extends Component<CreateStoryAttrs> {
                       <p>{story.attributes.title}</p>
                     </div>
                     <div className="story-actions-btn">
-                      <button onclick={() => app.modal.show(CompleteStoryModal, { story })} className="Button">
-                        {story.attributes.cta}
+                      <button
+                        onclick={() => {
+                          const group: UserStoryGroup = { user: this.attrs.user, stories: this.userStories!.data };
+                          const startIndex = this.userStories!.data.findIndex((s) => s.id === story.id);
+                          app.modal.show(StoryViewerModal, { storyGroups: [group], startIndex: Math.max(0, startIndex) });
+                        }}
+                        className="Button"
+                      >
+                        {story.attributes.cta || app.translator.trans('justoverclock-profile-stories.forum.viewLink')}
                       </button>
                       {canEditStory && (
                         <button
