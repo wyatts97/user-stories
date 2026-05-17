@@ -4,7 +4,6 @@ namespace Wyatts97\UserStories\Listener;
 
 use Flarum\Notification\NotificationSyncer;
 use Flarum\Settings\SettingsRepositoryInterface;
-use Flarum\User\User;
 use Wyatts97\UserStories\Event\StoryCreated;
 use Wyatts97\UserStories\Notification\NewStoryNotificationBlueprint;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -24,11 +23,30 @@ class SendNotificationOnNewStory
 
     public function handle(StoryCreated $event)
     {
-        $data = $event->data;
-        $recipient = User::query()->where('username', $data['username'])->first();
+        $story = $event->data;
+        $creator = $story->user;
+
+        if (!$creator) {
+            return;
+        }
+
+        // Notify followers of the story creator
+        if (method_exists($creator, 'followers')) {
+            $recipients = $creator->followers()
+                ->where('users.id', '!=', $creator->id)
+                ->get();
+        } else {
+            // Fallback: notify the creator if follow extension not installed
+            $recipients = [$creator];
+        }
+
+        if ($recipients->isEmpty() && !is_array($recipients)) {
+            return;
+        }
+
         $this->notifications->sync(
-            new NewStoryNotificationBlueprint($data),
-            [$recipient]
+            new NewStoryNotificationBlueprint($story),
+            $recipients instanceof \Illuminate\Support\Collection ? $recipients->all() : $recipients
         );
     }
 }

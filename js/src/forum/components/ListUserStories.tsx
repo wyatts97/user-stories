@@ -48,6 +48,10 @@ export default class ListUserStories extends Component<CreateStoryAttrs> {
         this.userStories = res as ApiStoryResponse;
         m.redraw();
       })
+      .catch((error) => {
+        console.error('Failed to load stories:', error);
+        app.alerts.show({ type: 'error' }, app.translator.trans('wyatts97-User-Stories.forum.errorLoadingStories'));
+      })
       .finally(() => {
         this.loading = false;
         m.redraw();
@@ -63,6 +67,10 @@ export default class ListUserStories extends Component<CreateStoryAttrs> {
       .then(() => {
         this.getAllUserStory();
         app.alerts.show({ type: 'success' }, app.translator.trans('wyatts97-User-Stories.forum.successDelete'));
+      })
+      .catch((error) => {
+        console.error('Failed to delete story:', error);
+        app.alerts.show({ type: 'error' }, app.translator.trans('wyatts97-User-Stories.forum.storyCreatedError'));
       });
   }
 
@@ -107,6 +115,7 @@ export default class ListUserStories extends Component<CreateStoryAttrs> {
                           app.modal.show(StoryViewerModal, { storyGroups: [group], startIndex: Math.max(0, startIndex) });
                         }}
                         className="Button"
+                        aria-label={story.attributes.title || app.translator.trans('wyatts97-User-Stories.forum.viewLink')}
                       >
                         {story.attributes.cta || app.translator.trans('wyatts97-User-Stories.forum.viewLink')}
                       </button>
@@ -114,12 +123,13 @@ export default class ListUserStories extends Component<CreateStoryAttrs> {
                         <button
                           onclick={() => app.modal.show(EditStoryModal, { story, user  })}
                           className="Button"
+                          aria-label={app.translator.trans('wyatts97-User-Stories.forum.editStoryModal')}
                         >
                           <i class="fas fa-edit"></i>
                         </button>
                       )}
                       {canDeleteStory && (
-                        <button onclick={() => this.deleteStory(story.id)} className="Button Button--danger">
+                        <button onclick={() => this.deleteStory(story.id)} className="Button Button--danger" aria-label={app.translator.trans('wyatts97-User-Stories.forum.successDelete')}>
                           <i class="fas fa-trash-alt"></i>
                         </button>
                       )}
@@ -129,22 +139,24 @@ export default class ListUserStories extends Component<CreateStoryAttrs> {
             </div>
           </div>
         )}
-        {this.userStories && this.userStories?.data.length > 7 && (
+        {this.userStories && (this.userStories.links.prev || this.userStories.links.first || this.userStories.links.next) && (
           <div className="user-story-pagination">
             <button
-              disabled={this.userStories && this.userStories.data.length <= 8}
+              disabled={!this.userStories?.links.prev && !this.userStories?.links.first}
               class="Button"
               onclick={() => {
                 const link = this.userStories?.links.prev ?? this.userStories?.links.first;
                 this.getAllUserStory(link);
               }}
+              aria-label={app.translator.trans('wyatts97-User-Stories.forum.prevPage')}
             >
               {app.translator.trans('wyatts97-User-Stories.forum.prevPage')}
             </button>
             <button
-              disabled={this.userStories && this.userStories?.data.length <= 8}
+              disabled={!this.userStories?.links.next}
               class="Button"
               onclick={() => this.getAllUserStory(this.userStories?.links.next)}
+              aria-label={app.translator.trans('wyatts97-User-Stories.forum.nextPage')}
             >
               {app.translator.trans('wyatts97-User-Stories.forum.nextPage')}
             </button>

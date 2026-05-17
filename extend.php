@@ -15,6 +15,7 @@ use Flarum\Api\Resource\UserResource;
 use Flarum\Extend;
 use Flarum\User\User;
 use Wyatts97\UserStories\Api\StoryResource;
+use Wyatts97\UserStories\Command\DeleteExpiredStoriesCommand;
 use Wyatts97\UserStories\Controller\BannerUploadController;
 use Wyatts97\UserStories\Event\StoryCreated;
 use Wyatts97\UserStories\Listener\SendNotificationOnNewStory;
@@ -28,7 +29,7 @@ return [
     (new Extend\Frontend('admin'))
         ->js(__DIR__.'/js/dist/admin.js')
         ->css(__DIR__.'/less/admin.less'),
-    new Extend\Locales(__DIR__.'/locale'),
+    (new Extend\Locales(__DIR__.'/locale')),
 
     (new Extend\Model(User::class))
         ->hasMany('stories', Story::class),
@@ -50,6 +51,13 @@ return [
     (new Extend\Event())
         ->listen(StoryCreated::class, SendNotificationOnNewStory::class, 'handle'),
 
+    (new Extend\Console())
+        ->command(DeleteExpiredStoriesCommand::class),
+
     (new Extend\Settings)
         ->serializeToForum('wyatts97-User-Stories.imagePreview', 'wyatts97-User-Stories.imagePreview'),
+    (new Extend\Cors)
+        ->allowOrigin('*')
+        ->allowMethods(['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'])
+        ->allowHeaders(['Content-Type', 'Authorization']),
 ];

@@ -50,6 +50,9 @@ export default class StoriesBar extends Component<ComponentAttrs> {
         this.storyGroups = Array.from(grouped.values()) as UserStoryGroup[];
         m.redraw();
       })
+      .catch((error) => {
+        console.error('Failed to load following stories:', error);
+      })
       .finally(() => {
         this.loading = false;
         m.redraw();
@@ -74,6 +77,8 @@ export default class StoriesBar extends Component<ComponentAttrs> {
                 onCreated: () => this.loadStories(),
               })
             }
+            aria-label={app.translator.trans('wyatts97-User-Stories.forum.createStory')}
+            role="button"
           >
             <div className="StoriesBar-ring StoriesBar-ring--yours">
               <Avatar user={currentUser} className="StoriesBar-avatar" />
@@ -92,6 +97,8 @@ export default class StoriesBar extends Component<ComponentAttrs> {
                   onClose: () => this.loadStories(),
                 })
               }
+              aria-label={group.user?.attributes?.displayName || group.user?.attributes?.username || ''}
+              role="button"
             >
               <div className="StoriesBar-ring">
                 <Avatar user={group.user} className="StoriesBar-avatar" />

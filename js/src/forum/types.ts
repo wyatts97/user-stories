@@ -30,7 +30,8 @@ export interface UserStoryGroup {
 
 export interface ApiStoryResponse {
   links: {
-    first: string;
+    first?: string;
+    last?: string;
     next?: string;
     prev?: string;
   };

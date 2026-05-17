@@ -19,6 +19,7 @@ use Tobscure\JsonApi\Document;
  */
 class StoryResource extends Resource\AbstractDatabaseResource
 {
+    private const FOLLOWING_STORIES_LIMIT = 20;
     public function type(): string
     {
         return 'stories';
@@ -49,10 +50,10 @@ class StoryResource extends Resource\AbstractDatabaseResource
                 ->data(fn (Context $context) => $this->prepareCreateData($context)),
 
             Endpoint\Update::make()
-                ->mutateBy(fn ($actor, Story $story) => $actor->can('editStory')),
+                ->mutateBy(fn ($actor, Story $story) => $actor->id() === $story->user_id || $actor->can('editStory')),
 
             Endpoint\Delete::make()
-                ->mutateBy(fn ($actor, Story $story) => $actor->can('deleteStory')),
+                ->mutateBy(fn ($actor, Story $story) => $actor->id() === $story->user_id || $actor->can('deleteStory')),
 
             Endpoint\Custom::make('following-stories')
                 ->route('GET', '/following-stories')
@@ -104,9 +105,7 @@ class StoryResource extends Resource\AbstractDatabaseResource
 
     protected function prepareCreateData(Context $context): array
     {
-        $data = $context->body()['data']['attributes'] ?? [];
-        $data['expires_at'] = now()->addHours(24);
-        return $data;
+        return $context->body()['data']['attributes'] ?? [];
     }
 
     protected function followingStories(Context $context): mixed
@@ -130,6 +129,7 @@ class StoryResource extends Resource\AbstractDatabaseResource
             ->forUsers($followedUserIds)
             ->with('user')
             ->orderBy('created_at', 'desc')
+            ->limit(self::FOLLOWING_STORIES_LIMIT)
             ->get();
     }
 }

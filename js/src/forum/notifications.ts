@@ -4,4 +4,4 @@ export interface Notification {
   icon: string;
 }
 
-export const REP_NOTIFICATIONS: Array<Notification> = [{ name: 'newStory', icon: 'fas fa-book-open', label: 'New Story' }];
+export const REP_NOTIFICATIONS: Array<Notification> = [{ name: 'newStory', icon: 'fas fa-book-open', label: 'newStory' }];

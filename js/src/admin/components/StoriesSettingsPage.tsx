@@ -33,18 +33,16 @@ export default class StoriesSettingsPage extends ExtensionPage {
         url,
         body: formData,
       })
-      .then((response) => {
-        // @ts-ignore
-        this.filepath = response.data.attributes.path;
+      .then((response: any) => {
+        this.filepath = response.path;
         app.alerts.show({ type: 'success' }, 'Banner uploaded successfully!');
+        m.redraw();
+        window.location.reload();
       })
       .catch((error) => {
         console.error('Upload failed:', error);
         app.alerts.show({ type: 'error' }, 'Failed to upload the banner. Please try again.');
-      })
-      .finally(() => {
         m.redraw();
-        window.location.reload();
       });
   }
 

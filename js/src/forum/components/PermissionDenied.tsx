@@ -2,7 +2,7 @@
 import Mithril from 'mithril';
 import app from 'flarum/forum/app';
 
-export default class PermissionDenied extends Component {
+export default class PermissionDenied extends Component<ComponentAttrs> {
   oninit(vnode: Mithril.Vnode<ComponentAttrs, this>) {
     super.oninit(vnode);
   }

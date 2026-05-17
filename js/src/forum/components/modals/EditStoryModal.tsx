@@ -154,6 +154,10 @@ export default class EditStoryModal extends Modal<EditStoryModalAttrs> {
       .then(() => {
         this.hide();
         app.alerts.show({ type: 'success' }, app.translator.trans('wyatts97-User-Stories.forum.successEdited'));
+      })
+      .catch((error) => {
+        console.error('Failed to edit story:', error);
+        app.alerts.show({ type: 'error' }, app.translator.trans('wyatts97-User-Stories.forum.storyCreatedError'));
       });
   }
 }

@@ -25,7 +25,7 @@ export default class StoryViewerModal extends Modal<StoryViewerModalAttrs> {
     return 'StoryViewerModal Modal--full';
   }
 
-  oninit(vnode: Mithril.Vnode<IInternalModalAttrs, this>) {
+  oninit(vnode: Mithril.Vnode<StoryViewerModalAttrs, this>) {
     super.oninit(vnode);
     this.currentGroupIndex = this.attrs.startIndex || 0;
     this.currentStoryIndex = 0;
@@ -170,7 +170,7 @@ export default class StoryViewerModal extends Modal<StoryViewerModalAttrs> {
               </span>
               <span className="StoryViewerModal-time">{humanTime(new Date(storyAttrs.createdAt))}</span>
             </div>
-            <button className="Button Button--icon StoryViewerModal-close" onclick={() => this.hide()}>
+            <button className="Button Button--icon StoryViewerModal-close" onclick={() => this.hide()} aria-label={app.translator.trans('wyatts97-User-Stories.forum.cancelBtn')}>
               <i className="fas fa-times" />
             </button>
           </div>
@@ -179,7 +179,6 @@ export default class StoryViewerModal extends Modal<StoryViewerModalAttrs> {
           <div
             className="StoryViewerModal-media"
             onclick={this.handleTap.bind(this)}
-            ontouchstart={this.handleTap.bind(this)}
           >
             {mediaUrl ? (
               <img src={mediaUrl} alt={storyAttrs.title} className="StoryViewerModal-image" />

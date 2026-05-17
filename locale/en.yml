@@ -53,3 +53,4 @@
     noStories: No stories to show.
     noImage: No image available
     viewLink: View link
+    errorLoadingStories: Failed to load stories. Please try again.

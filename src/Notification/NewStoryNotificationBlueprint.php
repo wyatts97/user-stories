@@ -22,7 +22,7 @@ class NewStoryNotificationBlueprint implements BlueprintInterface
 
     public function getFromUser()
     {
-        return User::query()->where('username', $this->story->username)->first();
+        return $this->story->user;
     }
 
     public function getData(): array

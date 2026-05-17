@@ -24,6 +24,7 @@ class Story extends AbstractModel
         'media_type',
         'caption',
         'expires_at',
+        'username',
     ];
 
     protected $casts = [
@@ -53,6 +54,10 @@ class Story extends AbstractModel
             if (!$story->expires_at) {
                 $story->expires_at = now()->addHours(24);
             }
+        });
+
+        static::created(function ($story) {
+            event(new \Wyatts97\UserStories\Event\StoryCreated($story));
         });
     }
 }

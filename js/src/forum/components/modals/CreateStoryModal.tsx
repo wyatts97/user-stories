@@ -122,6 +122,7 @@ export default class CreateStoryModal extends Modal<CreateStoryModalAttrs> {
               media_type: 'image',
               content_link: this.contentLink(),
               content_cta: this.contentCta(),
+              username: this.attrs.username,
             },
           },
         },
